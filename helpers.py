@@ -288,7 +288,7 @@ def can_book_room(rooms, room_id, date_str, time_str, bookings, update=False, bo
         return False
 
     for booking in bookings:
-        if booking["booking_id"] == booking_id:
+        if update and booking["booking_id"] == booking_id:
             continue
         if booking["room_id"] != room_id:
             continue
