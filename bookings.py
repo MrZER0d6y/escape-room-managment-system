@@ -229,7 +229,7 @@ def cancel_booking(bookings):
     if not bookings:
         print("\nThere are no bookings in the system.")
         return
-        
+
     print(f"\n--------- CANCLE BOOKING ---------")
     print(f"\nWhich booking would you like to cancel?")
     booking_id = get_booking_id(bookings)
@@ -246,7 +246,7 @@ def cancel_booking(bookings):
         update_cancelled_booking(bookings, booking_id, fee=False)
     else:
         hours_left = difference.total_seconds() / 3600
-        if hours_left == 0:
+        if hours_left <= 0:
             print(f"\nBooking {booking_id} is already past.")
             return
         update_cancelled_booking(bookings, booking_id, hours=hours_left)
