@@ -14,19 +14,19 @@ def calculate_discount(price, players):
     print("\nEligible for 15% discount!")
     return price - (price * 0.15)
 
-def weekend_discount(total, booking_date):
+def weekend_price(total, booking_date):
     booking_date = datetime.strptime(booking_date, "%Y-%m-%d")
     if booking_date.weekday() > 4:
-        print("\nEligible for weekend 15% discount!")
-        return total - (total * 0.15)
-    print("\nNot eligible for weekend discount.")
+        print("\nWeekend price, 15% added.")
+        return total + (total * 0.15)
+    print("\nNot weekend, original price.")
     return total
 
 def calculate_total(rooms, room_id, players, booking_date):
     for room in rooms:
         if room["room_id"] == room_id:
             total = calculate_discount(room["price_per_player"] * players, players)
-            total = weekend_discount(total, booking_date)
+            total = weekend_price(total, booking_date)
             return round(total, 2)
 
 def create_booking(bookings):
